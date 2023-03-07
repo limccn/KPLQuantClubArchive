@@ -1,0 +1,73 @@
+﻿CREATE TABLE [dbo].[TBL_PORTFOLIO_HISTORY] (
+    [ID]          INT            IDENTITY (1, 1) NOT NULL,
+    [DATE]        NVARCHAR (10)  NULL,
+    [TIME]        NVARCHAR (10)  NULL,
+    [CODE]        NVARCHAR (20)  NULL,
+    [NAME]        NVARCHAR (50)  NULL,
+    [RATE]        MONEY          NULL,
+    [PRICE]       MONEY          NULL,
+    [CJE]         MONEY          NULL,
+    [RATIO]       MONEY          NULL,
+    [SPEED]       MONEY          NULL,
+    [SJLTP]       MONEY          NULL,
+    [TUDE]        NVARCHAR (200) NULL,
+    [BUY]         MONEY          NULL,
+    [SELL]        MONEY          NULL,
+    [ZLJE]        MONEY          NULL,
+    [QJZF]        MONEY          NULL,
+    [TAG]         NVARCHAR (100) NULL,
+    [CREATE_TIME] SMALLDATETIME  DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
+
+CREATE TABLE [dbo].[TBL_PORTFOLIO_LATEST] (
+    [ID]          INT            IDENTITY (1, 1) NOT NULL,
+    [DATE]        NVARCHAR (10)  NULL,
+    [TIME]        NVARCHAR (10)  NULL,
+    [XHGXSJ]      NVARCHAR (10)  NULL,
+    [XHQRSJ]      NVARCHAR (10)  NULL,
+    [CODE]        NVARCHAR (20)  NULL,
+    [NAME]        NVARCHAR (50)  NULL,
+    [RATE]        MONEY          NULL,
+    [PRICE]       MONEY          NULL,
+    [CJE]         MONEY          NULL,
+    [RATIO]       MONEY          NULL,
+    [SPEED]       MONEY          NULL,
+    [SJLTP]       MONEY          NULL,
+    [TUDE]        NVARCHAR (200) NULL,
+    [BUY]         MONEY          NULL,
+    [SELL]        MONEY          NULL,
+    [ZLJE]        MONEY          NULL,
+    [QJZF]        MONEY          NULL,
+    [TAG]         NVARCHAR (100) NULL,
+    [CREATE_TIME] SMALLDATETIME  DEFAULT (getdate()) NULL,
+    [UPDATE_TIME] SMALLDATETIME  DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
+CREATE TABLE [dbo].[TBL_PORTFOLIO_SIGNAL] (
+    [ID]          INT            IDENTITY (1, 1) NOT NULL,
+    [DATE]        NVARCHAR (10)  NULL,
+    [TIME]        NVARCHAR (10)  NULL,
+    [XHGXSJ]      NVARCHAR (10)  NULL,
+    [XHQRSJ]      NVARCHAR (10)  NULL,
+    [CODE]        NVARCHAR (20)  NULL,
+    [NAME]        NVARCHAR (50)  NULL,
+    [RATE]        MONEY          NULL,
+    [PRICE]       MONEY          NULL,
+    [CJE]         MONEY          NULL,
+    [RATIO]       MONEY          NULL,
+    [SPEED]       MONEY          NULL,
+    [SJLTP]       MONEY          NULL,
+    [TUDE]        NVARCHAR (200) NULL,
+    [BUY]         MONEY          NULL,
+    [SELL]        MONEY          NULL,
+    [ZLJE]        MONEY          NULL,
+    [QJZF]        MONEY          NULL,
+    [TAG]         NVARCHAR (100) NULL,
+    [CREATE_TIME] SMALLDATETIME  DEFAULT (getdate()) NULL,
+    [UPDATE_TIME] SMALLDATETIME  DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

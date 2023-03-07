@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaiPanLa", "KaiPanLa\KaiPanLa.csproj", "{E9DC4112-E424-446B-86B1-5362F92AF1A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaiPanLaWeb", "KaiPanLaWeb\KaiPanLaWeb.csproj", "{705A65FF-AC23-45F1-9BCA-97D23CB5E2EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaiPanLaCommon", "KaiPanLaCommon\KaiPanLaCommon.csproj", "{17F4AD4F-CFA9-4EF5-A731-1B9299D11764}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaiPanLaPortfolio", "KaiPanLaPortfolio\KaiPanLaPortfolio.csproj", "{1643197C-D2A7-4F08-A869-44263F6DFD02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaiPanLaManager", "KaiPanLaManager\KaiPanLaManager.csproj", "{71F894D0-871E-40A9-AA9E-630A3E9EBCD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaiPanLaPortfolioManager", "KaiPanLaPortfolioManager\KaiPanLaPortfolioManager.csproj", "{26A328E0-C6C6-4A72-BD8F-4BC38EFFC185}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaiPanLaPlate", "KaiPanLaPlate\KaiPanLaPlate.csproj", "{77EBEA7C-C452-4FA3-9EC7-56427ECDD2EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9DC4112-E424-446B-86B1-5362F92AF1A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9DC4112-E424-446B-86B1-5362F92AF1A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9DC4112-E424-446B-86B1-5362F92AF1A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9DC4112-E424-446B-86B1-5362F92AF1A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{705A65FF-AC23-45F1-9BCA-97D23CB5E2EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{705A65FF-AC23-45F1-9BCA-97D23CB5E2EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{705A65FF-AC23-45F1-9BCA-97D23CB5E2EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{705A65FF-AC23-45F1-9BCA-97D23CB5E2EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F4AD4F-CFA9-4EF5-A731-1B9299D11764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F4AD4F-CFA9-4EF5-A731-1B9299D11764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F4AD4F-CFA9-4EF5-A731-1B9299D11764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F4AD4F-CFA9-4EF5-A731-1B9299D11764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1643197C-D2A7-4F08-A869-44263F6DFD02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1643197C-D2A7-4F08-A869-44263F6DFD02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1643197C-D2A7-4F08-A869-44263F6DFD02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1643197C-D2A7-4F08-A869-44263F6DFD02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71F894D0-871E-40A9-AA9E-630A3E9EBCD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71F894D0-871E-40A9-AA9E-630A3E9EBCD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71F894D0-871E-40A9-AA9E-630A3E9EBCD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71F894D0-871E-40A9-AA9E-630A3E9EBCD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A328E0-C6C6-4A72-BD8F-4BC38EFFC185}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A328E0-C6C6-4A72-BD8F-4BC38EFFC185}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A328E0-C6C6-4A72-BD8F-4BC38EFFC185}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A328E0-C6C6-4A72-BD8F-4BC38EFFC185}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77EBEA7C-C452-4FA3-9EC7-56427ECDD2EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77EBEA7C-C452-4FA3-9EC7-56427ECDD2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77EBEA7C-C452-4FA3-9EC7-56427ECDD2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77EBEA7C-C452-4FA3-9EC7-56427ECDD2EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CDC66EFA-4CAD-4BF2-9C10-7282545EA4BB}
+	EndGlobalSection
+EndGlobal

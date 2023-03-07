@@ -1,0 +1,750 @@
+﻿@{
+    Layout = "~/Views/Shared/_PilotLayout.cshtml";
+}
+
+<style>
+    .bs-checkbox label {
+        height: 13px;
+    }
+
+    .tr-inline-image {
+        width: 510px;
+        display: inline-block;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-5 co-sm-5">
+        <div class="form-inline" id="toolbar">
+            <div class="row">
+                <div class="col-lg-4  col-sm-4">
+                    <!--指定 date标记-->
+                    <div class='input-group date' id='datetimepicker1'>
+                        <span class="input-group-addon">日期</span>
+                        <input type='text' class="form-control" id="datapickertext" readonly />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">时间</span>
+                        <input type='text' class="form-control" id="txt_slider_time" readonly />
+                        <span class="input-group-btn">
+                            <button class="btn btn-success glyphicon glyphicon-refresh" id="btn_auto_refresh"></button>
+                            <button class="btn btn-default glyphicon glyphicon-repeat" id="btn_refresh"></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-sm-4">
+                    <input id="slider"
+                           data-slider-id='id_slider'
+                           type="text"
+                           data-slider-min="0"
+                           data-slider-max="240"
+                           data-slider-step="1"
+                           data-slider-value="0"
+                           data-slider-ticks="[0, 120, 240]"
+                           data-slider-ticks-snap-bounds="1"
+                           data-slider-ticks-labels='["9:30", "11:30/13:00", "15:00"]' />
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-lg-12 co-sm-12">
+                <div class="table-responsive">
+                    <table class="table table-condensed text-nowrap table-sm"
+                           id="table_plate"
+                           data-height="410"
+                           data-toggle="table"
+                           data-sortable="true"
+                           data-toolbar="#toolbar"
+                           data-search="false"
+                           data-show-search-button="false"
+                           data-side-pagination="client"
+                           data-pagination="false"
+                           data-click-to-select="true"
+                           data-single-select="true"
+                           data-page-size="10"
+                           data-buttons-align="right"
+                           data-show-button-text="false"
+                           data-ajax="ajaxPlateRequest"
+                           data-cache="false"
+                           data-show-refresh="false"
+                           data-auto-refresh="true"
+                           data-auto-refresh-status="true"
+                           data-auto-refresh-interval="10"
+                           data-auto-refresh-silent="true"
+                           data-show-fullscreen="false"
+                           data-show-columns="false"
+                           data-unique-id="CODE">
+                        <thead>
+                            <tr>
+                                <th data-field="STS" data-checkbox="true"></th>
+                                <th data-field="RN" data-align="center" data-valign="middle">No</th>
+                                <th data-field="DATE" data-formatter="dateFormattermmdd" data-align="center" data-valign="middle" data-visible="true">日期</th>
+                                <th data-field="TIME" data-formatter="timeFormatter" data-align="center" data-valign="middle" data-visible="true">时间</th>
+                                <th data-field="CODE" data-align="center" data-valign="middle">板块代码</th>
+                                <th data-field="NAME" data-align="center" data-valign="middle">板块名称</th>
+                                <th data-field="QD" data-align="center" data-valign="middle" data-sortable="true">强度</th>
+                                <th data-field="RATE" data-formatter="percentFormatter" data-align="center" data-valign="middle" data-sortable="true">涨跌幅</th>
+                                <th data-field="SPEED" data-formatter="percentFormatter" data-align="center" data-valign="middle" data-sortable="true">涨速</th>
+                                <th data-field="CJE" data-formatter="decimalPlainYiFormatter0" data-align="center" data-valign="middle">成交</th>
+                                <th data-field="LB" data-align="center" data-valign="middle" data-visible="false">量比</th>
+                                <th data-field="LTSZ" data-formatter="decimalPlainYiFormatter0" data-align="center" data-valign="middle" data-visible="false">流通市值</th>
+                                <th data-field="ZLJE" data-formatter="decimalAutoFormatter" data-align="center" data-valign="middle" data-sortable="true">主净</th>
+                                <th data-field="BUY" data-formatter="decimalAutoFormatter" data-align="center" data-valign="middle">主力买</th>
+                                <th data-field="SELL" data-formatter="decimalAutoFormatter" data-align="center" data-valign="middle">主力卖</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 co-sm-12">
+                <div class="table-condensed">
+                    <table class="table  table-condensed text-nowrap table-sm"
+                           id="table_signal"
+                           data-toggle="table"
+                           data-sortable="true"
+                           data-search="false"
+                           data-show-search-button="false"
+                           data-side-pagination="client"
+                           data-pagination="false"
+                           data-click-to-select="true"
+                           data-single-select="true"
+                           data-page-size="15"
+                           data-buttons-align="right"
+                           data-show-button-text="false"
+                           data-ajax="ajaxPlateSignalRequest"
+                           data-cache="false"
+                           data-show-refresh="false"
+                           data-auto-refresh="false"
+                           data-auto-refresh-status="false"
+                           data-auto-refresh-interval="30"
+                           data-auto-refresh-silent="true"
+                           data-show-fullscreen="false"
+                           data-show-columns="false"
+                           data-unique-id="CODE">
+                        <thead>
+                            <tr>
+
+                                <th data-field="RN" data-align="center" data-valign="middle">No</th>
+                                <th data-field="SBSJ" data-formatter="timeFormatter" data-align="center" data-valign="middle">上榜<br />时间</th>
+                                <th data-field="QD" data-align="center" data-valign="middle">强度</th>
+                                <th data-field="PLATENAME" data-align="center" data-valign="middle">板块<br />名称</th>
+                                <th data-field="PLATEQD" data-align="center" data-valign="middle">板块<br />强度</th>
+                                <th data-field="CODE" data-align="center" data-valign="middle">代码</th>
+                                <th data-field="NAME" data-align="center" data-valign="middle">名称</th>
+                                <th data-field="SJLTP" data-formatter="decimalPlainYiFormatter0" data-align="center" data-valign="middle">实际<br />流通</th>
+                                <th data-field="ZLJE" data-formatter="decimalAutoFormatter" data-align="center" data-valign="middle">上榜<br />净额</th>
+                                <th data-field="BUY" data-formatter="decimalPlainAutoFormatter" data-align="center" data-valign="middle">上榜<br />买入</th>
+                                <th data-field="RATE" data-formatter="percentPlainFormatter" data-align="center" data-valign="middle">上榜<br />涨幅</th>
+                                <th data-field="ZX_QD" data-align="center" data-valign="middle">强度<br />R</th>
+                                <th data-field="ZX_ZLJE" data-align="center" data-valign="middle" data-formatter="decimalAutoFormatter">主力<br />净R</th>
+                                <th data-field="ZX_BUY" data-align="center" data-valign="middle" data-formatter="decimalPlainAutoFormatter">主力<br />买R</th>
+
+
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7 col-sm-7">
+        <div class="table-responsive">
+            <table class="table  table-condensed text-nowrap table-sm"
+                   id="table_stock"
+                   data-height="950"
+                   data-toggle="table"
+                   data-sortable="true"
+                   data-search="false"
+                   data-show-search-button="false"
+                   data-side-pagination="client"
+                   data-pagination="false"
+                   data-click-to-select="false"
+                   data-single-select="true"
+                   data-page-size="30"
+                   data-buttons-align="right"
+                   data-show-button-text="false"
+                   data-ajax="ajaxPlateStockRequest"
+                   data-cache="false"
+                   data-show-refresh="false"
+                   data-auto-refresh="false"
+                   data-auto-refresh-status="false"
+                   data-auto-refresh-interval="30"
+                   data-auto-refresh-silent="true"
+                   data-show-fullscreen="false"
+                   data-show-columns="false"
+                   data-detail-view="true"
+                   data-detail-view-icon="true"
+                   data-detail-formatter="stockDetailFormatter"
+                   data-unique-id="CODE">
+                <thead>
+                    <tr>
+                        <th data-field="STS" data-checkbox="true"></th>
+                        <th data-field="RN" data-align="center" data-valign="middle">No</th>
+                        <th data-field="CODE" data-align="center" data-valign="middle">代码</th>
+                        <th data-field="NAME" data-align="center" data-valign="middle">名称</th>
+                        <th data-field="PLATEID" data-align="center" data-valign="middle" data-visible="false">板块<br />代码</th>
+                        <th data-field="PLATENAME" data-align="center" data-valign="middle" data-visible="false">板块<br />名称</th>
+                        <th data-field="PLATEQD" data-align="center" data-valign="middle" data-visible="false">板块<br />强度</th>
+
+                        <th data-field="RATE" data-formatter="percentFormatter" data-align="center" data-valign="middle" data-sortable="true">涨跌幅</th>
+                        <th data-field="SPEED" data-formatter="percentFormatter" data-align="center" data-valign="middle" data-sortable="true">涨速</th>
+                        <th data-field="CJE" data-formatter="decimalPlainYiFormatter" data-align="center" data-valign="middle" data-sortable="true">成交</th>
+                        <th data-field="RATIO" data-formatter="percentFormatter" data-align="center" data-valign="middle">换手率</th>
+                        <th data-field="LZCS" data-align="center" data-valign="middle" data-sortable="true">领涨</th>
+                        <th data-field="LBCS" data-align="center" data-valign="middle">连扳</th>
+                        <th data-field="LT" data-align="center" data-valign="middle">龙头</th>
+                        <th data-field="SPFD" data-formatter="decimalPlainAutoFormatter" data-align="center" data-valign="middle">收盘封单</th>
+                        <th data-field="ZDFD" data-formatter="decimalPlainAutoFormatter" data-align="center" data-valign="middle">最大封单</th>
+
+                        <th data-field="SJLTP" data-formatter="decimalPlainYiFormatter0" data-align="center" data-valign="middle" data-sortable="true">流通盘</th>
+                        <th data-field="BUY" data-formatter="decimalAutoFormatter" data-align="center" data-valign="middle">主力买</th>
+                        <th data-field="ZLJE" data-formatter="decimalAutoFormatter" data-align="center" data-valign="middle" data-sortable="true">主力净</th>
+                        <th data-field="DDJE300W" data-formatter="decimalAutoFormatter" data-align="center" data-valign="middle" data-sortable="true">大单净</th>
+                        <th data-field="EJBK" data-formatter="wrapFormatter" data-align="left" data-valign="middle">二级板块</th>
+
+                        <th data-field="TUDE" data-formatter="wrapFormatter" data-align="left" data-valign="middle" data-visible="false">概念板块</th>
+
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var G_SLIDER_LOCK = false;
+    var G_REFRESH_LOCK = false;
+
+    var G_IS_REQUEST_ONECE = false;
+    var G_IS_AUTOREFRESH = true;
+    var G_IS_MANUAL_FRESH = false;
+
+    var G_SLIDER_VALUE = convertTime2Slider(new Date());
+
+    var G_PICKED_DATE;
+
+    var G_CHECKED_PLATEID;
+
+    function cancelPreviousSlide() {
+        if (G_SLIDER_LOCK)
+            G_SLIDER_LOCK = false;
+    }
+
+    function cancelPreviousRefresh() {
+        if (G_REFRESH_LOCK)
+            G_REFRESH_LOCK = false;
+    }
+
+    $(document).ready(function () {
+
+        G_PICKED_DATE = moment().format("YYYYMMDD");
+
+        $('#datetimepicker1').datetimepicker({
+            locale: moment.locale('zh-cn'),
+            useCurrent: true,
+            format: 'YYYY年MM月DD日',//显示格式
+            daysOfWeekDisabled: [0, 6], //禁止选中周六周日
+            maxDate: new Date(),
+            ignoreReadonly: true
+        }).on('dp.change', function (e) {
+            //重置日期
+            G_PICKED_DATE = e.date.format("YYYYMMDD");
+            //重置选中板块
+            G_CHECKED_PLATEID == null
+            //关闭自动更新
+            G_IS_AUTOREFRESH = false;
+
+            $("#btn_auto_refresh").removeClass("btn-success");
+            $("#btn_auto_refresh").addClass("btn-default");
+            $("#btn_auto_refresh").removeClass("glyphicon-refresh");
+            $("#btn_auto_refresh").addClass("glyphicon-play-circle");
+
+            // G_DATEPICKER_VALUE = e.date;
+            //console.log(e.date.format('YYYYMMDD'));
+
+            G_IS_REQUEST_ONECE = true;
+            //刷新数据表
+            $('#table_plate').bootstrapTable('refresh', {
+                slient: true,
+            });
+
+            //$('#table_signal').bootstrapTable('refresh', {
+            //    slient: true,
+            //});
+        });
+
+        $('#table_plate').on('check.bs.table', function (e, row, ele) {
+            var selections = $('#table_plate').bootstrapTable('getSelections');
+            if (selections == null || selections.length == 0) {
+                G_CHECKED_PLATEID = null;
+            } else {
+                G_CHECKED_PLATEID = selections[0].CODE;
+            }
+
+            //刷新个股表
+            $('#table_stock').bootstrapTable('refresh', {
+                slient: true,
+            });
+        });
+
+        $('#table_stock').on('expand-row.bs.table', function (e, index, row, detail) {
+            //滚动到当前行
+            //$('#table_stock').bootstrapTable('scrollTo', { unit: 'rows', value: index });
+            if (index > 20) {
+                $('#table_stock').bootstrapTable('scrollTo', 'bottom');
+            } else {
+                $('#table_stock').bootstrapTable('scrollTo', index);
+            }
+
+
+        });
+
+        $('#table_stock').on('collapse-row.bs.table', function (e, index, row, detail) {
+            //滚动到当前行
+            //$('#table_stock').bootstrapTable('scrollTo', { unit: 'rows', value: index });
+            if (index > 20) {
+                $('#table_stock').bootstrapTable('scrollTo', 0);
+            } else {
+                $('#table_stock').bootstrapTable('scrollTo', index);
+            }
+        });
+
+        // With JQuery
+        $("#slider").slider({
+            value: convertTime2Slider(new Date()),
+        }).on("slide", function (e) {
+            if (G_SLIDER_LOCK)
+                return;
+            G_SLIDER_LOCK = true;
+            G_SLIDER_VALUE = e.value;
+
+            setTimeout(cancelPreviousSlide, 300);
+
+            var time_to_display = convertTimeDisplay(e.value);
+            $("#txt_slider_time").val(time_to_display);
+
+            if (G_IS_MANUAL_FRESH) {
+                G_IS_MANUAL_FRESH = false;
+
+                G_IS_REQUEST_ONECE = true;
+                //刷新数据表
+                $('#table_plate').bootstrapTable('refresh', {
+                    slient: true,
+                });
+            }
+            else {
+                if (G_IS_AUTOREFRESH) {
+                    //关闭自动更新
+                    G_IS_AUTOREFRESH = false;
+                    $("#btn_auto_refresh").removeClass("btn-success");
+                    $("#btn_auto_refresh").addClass("btn-default");
+                    $("#btn_auto_refresh").removeClass("glyphicon-refresh");
+                    $("#btn_auto_refresh").addClass("glyphicon-play-circle");
+                }
+
+                G_IS_REQUEST_ONECE = true;
+                //刷新数据表
+                $('#table_plate').bootstrapTable('refresh', {
+                    slient: true,
+                });
+            }
+
+            //刷新数据表
+            //$('#table_signal').bootstrapTable('refresh', {
+            //    slient: true,
+            //});
+        });
+
+        // button
+        $("#txt_slider_time").val(convertTimeDisplay(convertTime2Slider(new Date())));
+
+        $("#btn_auto_refresh").on("click", function (e) {
+            if (G_IS_AUTOREFRESH) {
+                //关闭自动更新
+                G_IS_AUTOREFRESH = false;
+
+                $("#btn_auto_refresh").removeClass("btn-success");
+                $("#btn_auto_refresh").addClass("btn-default");
+                $("#btn_auto_refresh").removeClass("glyphicon-refresh");
+                $("#btn_auto_refresh").addClass("glyphicon-play-circle");
+
+            } else {
+                //打开自动更新
+                G_IS_AUTOREFRESH = true;
+                // 关闭一次请求
+                G_IS_REQUEST_ONECE = false;
+
+                $("#btn_auto_refresh").removeClass("btn-default");
+                $("#btn_auto_refresh").addClass("btn-success");
+                $("#btn_auto_refresh").removeClass("glyphicon-play-circle");
+                $("#btn_auto_refresh").addClass("glyphicon-refresh");
+
+                //刷新数据表
+                $('#table_plate').bootstrapTable('refresh', {
+                    slient: true,
+                });
+            }
+
+        });
+
+        $("#btn_refresh").on("click", function (e) {
+
+            if (G_REFRESH_LOCK)
+                return;
+            G_REFRESH_LOCK = true;
+
+            setTimeout(cancelPreviousRefresh, 300);
+
+            G_IS_MANUAL_FRESH = true;
+            var time_val = convertTime2Slider(new Date());
+            $('#slider').slider('refresh', {
+                value: time_val
+            });
+
+            G_SLIDER_VALUE = time_val;
+            $("#txt_slider_time").val(convertTimeDisplay(time_val));
+
+            G_PICKED_DATE = moment().format("YYYYMMDD");
+            $("#datapickertext").val(moment().format('YYYY年MM月DD日'));
+
+            G_IS_REQUEST_ONECE = true;
+            //刷新数据表
+            $('#table_plate').bootstrapTable('refresh', {
+                slient: true,
+            });
+
+            //刷新数据表
+            //$('#table_signal').bootstrapTable('refresh', {
+            //    slient: true,
+            //});
+        });
+    });
+
+
+    function delayPlateLoaded() {
+
+        if (G_CHECKED_PLATEID == null) {
+            var datas = $('#table_plate').bootstrapTable('getData');
+            if (datas == null || datas.length == 0) {
+                G_CHECKED_PLATEID = null;
+            } else {
+                G_CHECKED_PLATEID = datas[0].CODE;
+
+                $('#table_plate').bootstrapTable('checkBy', {
+                    field: 'CODE',
+                    values: [G_CHECKED_PLATEID]
+                });
+            }
+        } else {
+            $('#table_plate').bootstrapTable('checkBy', {
+                field: 'CODE',
+                values: [G_CHECKED_PLATEID]
+            });
+        }
+
+        if (G_IS_AUTOREFRESH) {
+            //调整刷新时间
+            var time_val = convertTime2Slider(new Date());
+
+
+            G_SLIDER_VALUE = time_val;
+            $("#txt_slider_time").val(convertTimeDisplay(time_val));
+
+            //G_IS_MANUAL_FRESH = true;
+            //$('#slider').slider('refresh', {
+            //    value: time_val
+            //});
+        }
+
+        //刷新个股表
+        //$('#table_stock').bootstrapTable('refresh', {
+        //    slient: true,
+        //});
+
+        //刷新数据表
+        $('#table_signal').bootstrapTable('refresh', {
+            slient: true,
+        });
+
+    }
+
+    function delayPlateStockLoaded() {
+
+        var datas = $('#table_signal').bootstrapTable('getData');
+        if (datas == null || datas.length == 0) {
+
+        } else {
+            var codes = [];
+            datas.forEach(function (value, index) {
+                codes[index] = value.CODE;
+            });
+
+            $('#table_stock').bootstrapTable('uncheckAll')
+            $('#table_stock').bootstrapTable('checkBy', {
+                field: 'CODE',
+                values: codes
+            });
+
+        }
+    }
+
+    function delayPlateSignalLoaded() {
+        return;
+    }
+
+    function stockDetailFormatter(index, row) {
+
+        var code = row.CODE;
+        var mkt = "";
+        if (code.startsWith("00") || code.startsWith("30")) {
+            mkt = "sz";
+        } else if (code.startsWith("60") || code.startsWith("68")) {
+            mkt = "sh";
+        }
+        var html =
+            '<img src="https://image.sinajs.cn/newchart/min/n/'
+            + mkt + code + '.gif" title="' + code + '" class="tr-inline-image">' +
+            '<img src="https://image.sinajs.cn/newchart/daily/n/'
+            + mkt + code + '.gif" title="' + code + '" class="tr-inline-image">';
+        return html;
+    }
+
+
+    function convertTimeDisplay(val) {
+        var value = convertSlider2Time(val / 1);
+        var hour = value.hours;
+        var min = value.minutes;
+        var time_to_display = "00:00"
+        time_to_display = (hour >= 10 ? hour : "0" + hour) + ":" + (min >= 10 ? min : "0" + min);
+        return time_to_display;
+    }
+
+    function convertTime2Slider(datetime) {
+        var hour = datetime.getHours();
+        var min = datetime.getMinutes();
+
+        if (hour < 9) {
+            return 0;
+        } else if (hour == 9) {
+            return min > 30 ? (min - 30) : 0;
+        } else if (hour > 9 && hour < 11) {
+            return (hour - 9) * 60 - 30 + min;
+        } else if (hour == 11) {
+            return min > 30 ? 120 : 90 + min;
+        } else if (hour > 11 && hour < 13) {
+            return 120;
+        } else if (hour >= 13 && hour < 15) {
+            return (hour - 11) * 60 + min;
+        } else if (hour >= 15) {
+            return 240
+        }
+    }
+    function convertSlider2Time(value) {
+        var hour = 0;
+        var min = 0
+
+        if (value >= 0 && value < 30) {
+            hour = 9
+            min = value + 30;
+        }
+        else if (value >= 30 && value < 90) {
+            hour = 10
+            min = value - 30;
+        }
+        else if (value >= 90 && value <= 120) {
+            hour = 11
+            min = value - 90;
+        }
+        else if (value >= 121 && value < 180) {
+            hour = 13
+            min = value - 120;
+        }
+        else if (value >= 180 && value < 240) {
+            hour = 14
+            min = value - 180;
+        }
+        else if (value == 240) {
+            hour = 15
+            min = 0;
+        } else {
+            hour = 15
+            min = 0;
+        }
+        return { hours: hour, minutes: min };
+    }
+
+
+
+    function ajaxPlateRequest(params) {
+
+        //保存选择状态
+        var selections = $('#table_plate').bootstrapTable('getSelections');
+        if (selections == null || selections.length == 0) {
+        } else {
+            G_CHECKED_PLATEID = selections[0].CODE;
+        }
+
+
+        var query_date;
+        var query_time;
+
+        if (G_IS_AUTOREFRESH) {
+            //自动更新取当前时间
+            var now = new Date()
+            var min = now.getMinutes();
+            var hour = now.getHours();
+
+            query_date = moment().format("YYYYMMDD");
+            query_time = hour + "" + (min >= 10 ? min : "0" + min);
+
+        } else if (G_IS_REQUEST_ONECE) {
+            // 只请求一次
+            G_IS_REQUEST_ONECE = false;
+            //根据选择请求数据
+            if (G_PICKED_DATE != null) {
+                query_date = G_PICKED_DATE
+            }
+
+            if (G_SLIDER_VALUE > 0) {
+                var convtime = convertSlider2Time(G_SLIDER_VALUE)
+                hour = convtime.hours;
+                min = convtime.minutes;
+            }
+            query_time = hour + "" + (min >= 10 ? min : "0" + min);
+        } else {
+            // 非自动更新和手动请求的情况
+            return;
+        }
+
+        $.ajax({
+            url: "/api/Plate?count=10"
+                + "&date=" + query_date
+                + "&time=" + query_time
+                + "&_rnd=" + Math.random(10000000, 99999999),
+            type: "GET",
+            dataType: "json",
+            success: function (rs) {
+                params.success({
+                    total: rs.length,
+                    rows: rs
+                });
+                //debugger;
+                setTimeout(delayPlateLoaded, 200);
+            },
+            error: function (rs) {
+                params.error({
+                    total: 0,
+                    rows: []
+                });
+            }
+        });
+    }
+
+    function ajaxPlateStockRequest(params) {
+        var now = new Date()
+        var min = now.getMinutes();
+        var hour = now.getHours();
+
+        var picked_date = moment().format("YYYYMMDD");
+
+        if (G_PICKED_DATE != null) {
+            picked_date = G_PICKED_DATE
+        }
+
+        if (G_SLIDER_VALUE > 0) {
+            var convtime = convertSlider2Time(G_SLIDER_VALUE)
+            hour = convtime.hours;
+            min = convtime.minutes;
+        }
+        var query_time = hour + "" + (min >= 10 ? min : "0" + min);
+
+        var query_plate
+        var selections = $('#table_plate').bootstrapTable('getSelections');
+        if (selections == null || selections.length == 0) {
+            query_plate = G_CHECKED_PLATEID;
+        } else {
+            query_plate = selections[0].CODE;
+        }
+
+        $.ajax({
+            url: "/api/PlateStock?count=29"
+                + "&date=" + picked_date
+                + "&plateid=" + query_plate
+                + "&time=" + query_time
+                + "&_rnd=" + Math.random(10000000, 99999999),
+            type: "GET",
+            dataType: "json",
+            success: function (rs) {
+                params.success({
+                    total: rs.length,
+                    rows: rs
+                });
+                //debugger;
+                setTimeout(delayPlateStockLoaded, 200);
+            },
+            error: function (rs) {
+                params.error({
+                    total: 0,
+                    rows: []
+                });
+            }
+        });
+    }
+
+    function ajaxPlateSignalRequest(params) {
+        var now = new Date()
+        var min = now.getMinutes();
+        var hour = now.getHours();
+
+        var picked_date = moment().format("YYYYMMDD");
+
+        if (G_PICKED_DATE != null) {
+            picked_date = G_PICKED_DATE
+        }
+
+        if (G_SLIDER_VALUE > 0) {
+            var convtime = convertSlider2Time(G_SLIDER_VALUE)
+            hour = convtime.hours;
+            min = convtime.minutes;
+
+        }
+        var query_time = hour + "" + (min >= 10 ? min : "0" + min);
+        $.ajax({
+            url: "/api/PlateSignal?&count=15"
+                + "&date=" + picked_date
+                + "&time=" + query_time
+                + "&_rnd=" + Math.random(10000000, 99999999),
+            type: "GET",
+            dataType: "json",
+            success: function (rs) {
+                params.success({
+                    total: rs.length,
+                    rows: rs
+                });
+                //debugger;
+                setTimeout(delayPlateSignalLoaded, 200);
+            },
+            error: function (rs) {
+                params.error({
+                    total: 0,
+                    rows: []
+                });
+            }
+        });
+    }
+
+</script>

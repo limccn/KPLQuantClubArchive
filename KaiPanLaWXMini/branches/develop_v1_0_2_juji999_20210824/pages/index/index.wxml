@@ -1,0 +1,153 @@
+<!--index.wxml-->
+<!--列表页-->
+<view class='wrapper'>
+	<view class="userinfo-container">
+		<view class="userinfo">
+			<block wx:if="{{!hasUserInfo}}">
+				<image wx:if="{{canIUse}}" class="userinfo-avatar" src="../../image/user_img.png" mode="cover"></image>
+      	<block wx:if="{{canIUseGetUserProfile}}">
+					<button class="btn" wx:if="{{canIUse}}" bindtap="getUserProfile">  {{ui_config.ui_login_now}} </button>
+				</block>
+     		<block wx:else>
+					<button class="btn" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> {{ui_config.ui_login_now}} </button>
+				</block>
+      </block>
+			<block wx:else>
+				<view class="has-userinfo">
+					<!--<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>-->
+					<open-data class="userinfo-avatar" type="userAvatarUrl" mode="cover"></open-data>
+					<view class="userinfo-detail">
+						<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+						<text class="userinfo-valid-date">{{ui_config.ui_expire}}</text>
+						<text class="userinfo-valid-date">{{valid_date}}</text>
+					</view>
+				</view>
+			</block>
+			<view class="date">
+				<!-- <view class="date_left">
+					<image src="../../image/date_left.png" ></image>
+				</view> -->
+				<picker mode="date" class="date_picker" value="{{date}}" start="2010-01-01" bindchange="bindDateChange">
+					<view class="picker">
+						<view class="date_mid">
+							<view>{{date}}</view>
+							<image src="../../image/date.png"></image>
+						</view>
+					</view>
+				</picker>
+				<!-- <view class="date_right">
+					<image src="../../image/date_right.png"></image>
+				</view> -->
+			</view>
+		</view>
+	</view>
+	<!--等待框-->
+	<loading hidden='{{!loading}}'>{{ui_config.ui_loading}}</loading>
+	<!--数据更新时间-->
+	<!--列表-->
+	<view class='bind-table'>
+		<view class="rightTab">
+			<view class='table table3'>
+				<view class="tr thead2">
+					<block wx:if="{{!rightshowflag}}">
+						<view class="td df-item">{{ui_config.ui_strength}}
+							<view class="df-item-wrap">{{ui_config.ui_latest}}</view>
+						</view>
+						<view class="td df-item">{{ui_config.ui_rate}}
+							<view class="df-item-wrap">{{ui_config.ui_latest}}</view>
+						</view>
+						<view class="td df-item2">{{ui_config.ui_description}}</view>
+					</block>
+					<block wx:else>
+						<view class="td df-item">{{ui_config.ui_turnover}}
+							<view class="df-item-wrap">{{ui_config.ui_latest}}</view>
+						</view>
+						<view class="td df-item">{{ui_config.ui_buy}}
+							<view class="df-item-wrap">{{ui_config.ui_latest}}</view>
+						</view>
+						<view class="td df-item">{{ui_config.ui_sell}}
+							<view class="df-item-wrap">{{ui_config.ui_latest}}</view>
+						</view>
+					</block>
+				</view>
+				<view hidden='{{has_msg}}' class="paddingTop100">
+					<block wx:for="{{list}}" wx:key="RN">
+						<view class="tr tbody bg-g">
+							<block wx:if="{{!rightshowflag}}">
+								<view class="td df-item colorblack">{{item.QD}}<view class="df-item-wrap colorblack">{{item.ZX_QD != '' && item.ZX_QD != '0' ? item.ZX_QD:'-'}}</view>
+								</view>
+								<view class="td df-item {{item.RATE >= 0 ? 'colorred':'colorgreen'}}">{{item.RATE}}%<view class="df-item-wrap {{item.ZX_RATE >= 0 ? 'colorred':'colorgreen'}}">{{item.ZX_RATE != '' && item.ZX_RATE != '0'? item.ZX_RATE+'%':'-'}}</view>
+								</view>
+								<view class="td df-item2 colorblue" bindtap="showbtn" data-no="{{item.RN}}">
+									<view class="df-item3">{{item.TUDE}}</view>
+									<view class="rightbottomimg">
+										<image class="rightbottom" wx:if="{{!item.showflag}}" src="../../image/bottom.png"></image>
+										<image class="rightbottom" wx:if="{{item.showflag}}" src="../../image/top.png"></image>
+									</view>
+								</view>
+								<view class="btnview" wx:if="{{item.showflag}}">
+									<block wx:for="{{item.arr}}" wx:key="keys" wx:for-item="items">
+										<view>{{items}}</view>
+									</block>
+								</view>
+							</block>
+							<block wx:else>
+								<view class="td df-item colorred">{{item.ZLJE}}<view class="df-item-wrap colorred">{{item.ZX_ZLJE}}</view>
+								</view>
+								<view class="td df-item colorred">{{item.BUY}}<view class="df-item-wrap colorred">{{item.ZX_BUY}}</view>
+								</view>
+								<view class="td df-item colorgreen">{{util.strFormat2(item.SELL)}}<view class="df-item-wrap colorgreen">{{util.strFormat2(item.ZX_SELL)}}</view>
+								</view>
+							</block>
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<view class='div2'>
+			<view class="table table2">
+				<view class="tr thead">
+					<view class="td df-name">{{ui_config.ui_symbol_name}}</view>
+				</view>
+				<view hidden='{{has_msg}}' class="paddingTop100">
+					<block wx:for="{{list}}" wx:key="RN">
+						<view class="tr tbody bg-g">
+							<view class="td df-name">{{item.NAME}}
+								<view class="df-code">
+									<view style="float: left;font-weight: 400">{{item.CODE}}</view>
+									<view class="df-time">{{item.SBSJ}}</view>
+								</view>
+							</view>
+						</view>
+					</block>
+				</view>
+			</view>
+
+			<view class="nologinmsg" wx:if="{{(!hasUserInfo && canIUse)||valid_date_flag}}">
+				<view class="nologinmsgtext1">{{ui_config.ui_hello}}</view>
+				<view class="nologinmsgtext2">{{ui_config.ui_greeting}}</view>
+				<image src="../../image/user.jpg"></image>
+			</view>
+		</view>
+		<view class="rightchange" wx:if="{{!rightshowflag&&list!=null&&list.length!=0}}" bindtap="rightChange">
+			<image src="../../image/change1.png"></image>
+		</view>
+		<view class="rightchange" wx:if="{{rightshowflag&&list!=null&&list.length!=0}}" bindtap="rightChange">
+			<image src="../../image/change2.png"></image>
+		</view>
+		<view class="clear-up"></view>
+		<!--message place holder-->
+		<view class='no-data-place-holder' hidden='{{!has_msg}}'>{{msg}}</view>
+	</view>
+</view>
+
+<wxs module="util">
+	var strFormat = function(val) {
+		return val.substring(0, val.length - 1);
+	}
+	module.exports.strFormat = strFormat;
+	var strFormat2 = function(val) {
+		return val.replace('-', '');
+	}
+	module.exports.strFormat2 = strFormat2;
+</wxs>

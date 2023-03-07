@@ -1,0 +1,511 @@
+/**index.wxss**/
+button::after {
+  border: none;
+}
+
+button {
+  margin: 0rpx 0rpx;
+  width: 160rpx;
+  line-height: 45rpx;
+  height: 50rpx;
+  font-size: 30rpx;
+  display: inline-block;
+  border-radius: 15rpx;
+  border: 1rpx solid #4867A8;
+  margin-top: 25rpx;
+  color: #4867A8;
+  padding: 0rpx;
+  text-align: center;
+  background-color: #FFFFFF;
+}
+
+.btn {
+  height: 50rpx;
+}
+
+.userinfo-container {
+  height: 120rpx;
+  width: 100%;
+  position: fixed;
+  background-color: #FFFFFF;
+  z-index: 999;
+  top: 0;
+}
+
+.title {
+  background-color: #E83030;
+  width: 100%;
+  height: 100rpx;
+  font-size: 30rpx;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+.title view {
+  margin-top: 25rpx;
+}
+
+.date {
+  width: auto;
+  height: 80rpx;
+  float: right;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+}
+
+.date_left {
+  width: 34rpx;
+  height: 46rpx;
+  margin-top: 10rpx;
+  float: left;
+}
+
+.date_left image {
+  width: 100%;
+  height: 100%;
+}
+
+.date_right {
+  margin-top: 10rpx;
+  width: 34rpx;
+  height: 46rpx;
+  margin-left: 10rpx;
+  float: left;
+}
+
+.date_right image {
+  width: 100%;
+  height: 100%;
+}
+
+.date_mid {
+  width: 220rpx;
+  float: left;
+  margin-left: 10rpx;
+  height: 60rpx;
+  text-align: center;
+  border: 1px solid #C4C4C4;
+  border-radius: 15rpx;
+  font-size: 27rpx;
+}
+
+.date_mid image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 10rpx;
+}
+
+.date_mid view {
+  color: #4867A8;
+  float: left;
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+}
+
+.date_picker {
+  float: left;
+}
+
+.userinfo {
+  padding: 11rpx 0;
+  width: 100%;
+  position: fixed;
+}
+
+.has-userinfo {
+  float: left;
+}
+
+.userinfo-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  margin: 0 33rpx;
+  border-radius: 8%;
+  float: left;
+}
+
+.userinfo-detail {
+  float: left;
+  height: 102rpx;
+  margin-top: -15rpx;
+}
+
+.userinfo-nickname {
+  color: #555555;
+  text-align: left;
+  vertical-align: middle;
+  height: 52rpx;
+  font-size: 27rpx;
+}
+
+.userinfo-valid-date {
+  display: flex;
+  height: 35rpx;
+  color: #888888;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 27rpx;
+}
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0rpx 0;
+  box-sizing: border-box;
+  background-color: #d3d3d3;
+}
+
+.top-header {
+  display: flex;
+  width: 100%;
+}
+
+.update-time {
+  font-size: smaller;
+  height: 1.2rem;
+  text-align: right;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: snow;
+  margin-top: 26rpx;
+  padding: 11rpx;
+}
+
+.bind-table {
+  width: 100%;
+}
+
+.table {
+  border: 0;
+  font-size: 30rpx;
+  color: #555555;
+}
+
+.table1 {
+  width: 2100rpx;
+}
+
+.table2 {
+  width: 250rpx;
+  margin-top: 120rpx;
+}
+
+.table3 {
+  width: 500rpx;
+  margin-top: 120rpx;
+}
+
+.paddingTop100 {
+  padding-top: 100rpx;
+}
+
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #E1E7F2;
+}
+
+.thead {
+  background: #F3F3F3;
+  color: #666666;
+  font-size: 30rpx;
+  height: 100rpx;
+  position: fixed;
+  top: 120rpx;
+  z-index: 999;
+  width: 250rpx;
+}
+
+.thead2 {
+  background: #F3F3F3;
+  color: #666666;
+  font-size: 30rpx;
+  height: 100rpx;
+  position: fixed;
+  top: 120rpx;
+  z-index: 999;
+  width: 500rpx;
+}
+
+.tbody {
+  height: 110rpx;
+  position: relative;
+}
+
+.td {
+  width: 200rpx;
+  justify-content: center;
+  text-align: center;
+}
+
+.bg-w {
+  background: #FFFFFF;
+}
+
+.bg-g {
+  background: #FFFFFF;
+}
+
+.scrollclass {
+  width: 100%;
+  height: 200px;
+}
+
+.div2 {
+  position: absolute;
+}
+
+.scrollclass1 {
+  margin-left: 250rpx;
+  z-index: 100;
+  position: absolute;
+  width: 500rpx;
+}
+
+.rightTab {
+  margin-left: 250rpx;
+  z-index: 100;
+  position: absolute;
+  width: 500rpx;
+}
+
+.df-item {
+  width: 150rpx;
+}
+
+.df-item2 {
+  width: 200rpx;
+}
+
+.df-item3 {
+  width: 200rpx;
+  height: 80rpx;
+  word-break: break-all;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+}
+
+.rightbottom {
+  width: 100%;
+  height: 100%;
+}
+
+.rightbottomimg {
+  width: 30rpx;
+  height: 15rpx;
+  margin-left: 90rpx;
+  margin-top: -15rpx;
+  margin-bottom: 10rpx;
+}
+
+.btnview {
+  position: absolute;
+  top: 112rpx;
+  right: 0;
+  z-index: 999;
+  background-color: #F3F3F3;
+  line-height: 50rpx;
+  padding-bottom: 20rpx;
+  padding-left: 20rpx;
+}
+
+.btnview view {
+  height: 50rpx;
+  width: auto;
+  padding: 5rpx;
+  border: 1px solid #445B91;
+  border-radius: 8rpx;
+  color: #445B91;
+  background-color: #FFFFFF;
+  float: right;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  text-align: center;
+}
+
+.rightchange {
+  position: fixed;
+  z-index: 999;
+  right: 0;
+  top: 800rpx;
+}
+
+.rightchange image {
+  width: 80rpx;
+  height: 62rpx;
+}
+
+.colorblack {
+  color: #323232;
+  font-weight: bold;
+}
+
+.colorred {
+  color: #E02E2E;
+  font-weight: bold;
+}
+
+.colorredno {
+  color: #E02E2E;
+}
+
+.colorblackno {
+  color: #323232;
+}
+
+.colorgreen {
+  color: #2F9239;
+  font-weight: bold;
+}
+
+.colorblue {
+  color: #4867A8;
+}
+
+.df-rn {
+  width: 65rpx;
+}
+
+.df-code {
+  width: 200rpx;
+  font-size: 27rpx;
+  height: 1rem;
+  text-align: left;
+  color: #555555;
+}
+
+.df-time {
+  float: left;
+  border: 1px solid #FF7F00;
+  height: 25rpx;
+  line-height: 25rpx;
+  padding-left: 6rpx;
+  padding-right: 6rpx;
+  font-size: 24rpx;
+  margin-left: 10rpx;
+  border-radius: 8rpx;
+  color: #FF7F00;
+  font-weight: 400;
+  margin-top: 6rpx;
+}
+
+.df-name {
+  width: 165rpx;
+  text-align: left;
+  font-size: 30rpx;
+}
+
+.df-sbsj {
+  width: 125rpx;
+}
+
+.df-qd {
+  width: 100rpx;
+}
+
+.df-tl {
+  width: 100rpx;
+}
+
+.df-tude {
+  width: 700rpx;
+  justify-content: left;
+  text-align: left;
+  overflow: hidden;
+}
+
+.df-sjltp {
+  width: 125rpx;
+}
+
+.df-zlje {
+  width: 125rpx;
+}
+
+.df-buy {
+  width: 150rpx;
+}
+
+.df-sell {
+  width: 175rpx;
+}
+
+.df-rate {
+  width: 150rpx;
+}
+
+.df-zx-zlje {
+  width: 150rpx;
+}
+
+.df-zx-buy {
+  width: 150rpx
+}
+
+.df-zx-sell {
+  width: 175rpx;
+}
+
+.df-br {
+  width: 100%
+}
+
+.up-color {
+  color: #ff0000;
+}
+
+.down-color {
+  color: #0000ff;
+}
+
+.clear-up {
+  background-color: #FFFFFF;
+  clear: both;
+  height: 2.2rem;
+}
+
+.no-data-place-holder {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 11px 0;
+  background-color: snow;
+  font-size: smaller;
+}
+
+.nologinmsg {
+  width: auto;
+  height: auto;
+}
+
+.nologinmsgtext1 {
+  margin-left: 50rpx;
+  font-size: 30rpx;
+  margin-top: 150rpx;
+}
+
+.nologinmsgtext2 {
+  width: 650rpx;
+  margin-left: 50rpx;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+
+.nologinmsg image {
+  width: 300rpx;
+  height: 300rpx;
+  margin-left: 230rpx;
+  margin-top: 50rpx;
+}

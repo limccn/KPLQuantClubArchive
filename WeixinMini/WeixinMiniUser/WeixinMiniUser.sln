@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeixinMiniUser", "WeixinMiniUser.csproj", "{10971FD1-1926-41AA-AAB8-2562F9520F54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeixinCommon", "..\WeixinCommon\WeixinCommon.csproj", "{04CE11DB-7DE1-4D19-8A1A-45CCC38C82D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10971FD1-1926-41AA-AAB8-2562F9520F54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10971FD1-1926-41AA-AAB8-2562F9520F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10971FD1-1926-41AA-AAB8-2562F9520F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10971FD1-1926-41AA-AAB8-2562F9520F54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04CE11DB-7DE1-4D19-8A1A-45CCC38C82D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04CE11DB-7DE1-4D19-8A1A-45CCC38C82D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04CE11DB-7DE1-4D19-8A1A-45CCC38C82D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04CE11DB-7DE1-4D19-8A1A-45CCC38C82D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BDE6209-F6F2-4493-A10C-C168C3B5D23D}
+	EndGlobalSection
+EndGlobal

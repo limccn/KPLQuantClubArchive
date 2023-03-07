@@ -1,0 +1,146 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>个股热度数据</title>
+   
+    <style>
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+
+        /* Set padding to keep content from hitting the edges */
+        .body-content {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        /* Set width on the form input elements since they're 100% wide by default */
+        input,
+        select,
+        textarea {
+            max-width: 280px;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+   
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.css">
+
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/hot.html">个股热度数据</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table text-nowrap"
+                       id="table"
+                       data-toggle="table"
+                       data-sortable="true"
+                       data-toolbar="#toolbar"
+                       data-search="true"
+                       data-show-search-button="true"
+                       data-side-pagination="client"
+                       data-pagination="true"
+                       data-click-to-select="true"
+                       data-single-select="true"
+                       data-page-size="25"
+                       data-buttons-align="left"
+                       data-show-button-text="true"
+                       data-ajax="ajaxRequest"
+                       data-cache="false"
+                       data-show-refresh="true"
+                       data-auto-refresh="true"
+                       data-auto-refresh-status="false"
+                       data-auto-refresh-interval="60"
+                       data-auto-refresh-silent="true"
+                       data-show-fullscreen="true">
+                    <thead>
+                        <tr>
+                            <th data-field="index" data-align="center" data-valign="middle">序号</th>
+                            <th data-field="code" data-align="center" data-valign="middle">股票代码</th>
+                            <th data-field="popularity" data-align="center" data-valign="middle">热度</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; 2020 - 个股热度数据 ver0.1 build 20201118 </p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/extensions/auto-refresh/bootstrap-table-auto-refresh.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+
+
+    <script>
+
+    function ajaxRequest(params){
+      //debugger;
+      $.ajax({
+        url: "/stk/Rankgen/data.json?_rnd="+Math.random(10000000,99999999),
+        type: "GET",
+        dataType: "json",
+        success: function(rs){
+          console.log(rs)
+          var code = rs.code;
+          if(code == 200){
+              params.success({
+              total: rs.data.length,
+              rows: rs.data
+            });
+          }else{
+            params.success({ 
+              total: 0,
+              rows: []
+              });
+          }
+          //debugger;
+        },
+        error: function(rs){
+          console.log(rs)
+        }
+      });
+    }
+
+    </script>
+
+</body>
+</html>
+

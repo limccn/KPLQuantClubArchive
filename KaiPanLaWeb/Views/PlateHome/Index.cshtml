@@ -1,0 +1,117 @@
+﻿@{
+    Layout = "~/Views/Shared/_PlateLayout.cshtml";
+}
+<div class="row">
+    <div class="form-inline" id="toolbar">
+        <label>日期：</label>
+        <!--指定 date标记-->
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" readonly />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table text-nowrap"
+               id="table"
+               data-toggle="table"
+               data-sortable="false"
+               data-toolbar="#toolbar"
+               data-search="false"
+               data-show-search-button="false"
+               data-side-pagination="client"
+               data-pagination="true"
+               data-click-to-select="true"
+               data-single-select="true"
+               data-page-size="20"
+               data-buttons-align="right"
+               data-show-button-text="true"
+               data-ajax="ajaxSignalRequest"
+               data-cache="false"
+               data-show-refresh="true"
+               data-auto-refresh="true"
+               data-auto-refresh-status="false"
+               data-auto-refresh-interval="30"
+               data-auto-refresh-silent="true"
+               data-show-fullscreen="true"
+               data-show-columns="true"
+               data-unique-id="RN">
+            <thead>
+                <tr>
+                    <th data-field="RN" data-align="center" data-valign="middle">序<br />号</th>
+                    <th data-field="DATE" data-formatter="dateFormatter" data-align="center" data-valign="middle" data-visible="false">日期</th>
+                    <th data-field="TIME" data-formatter="timeFormatter" data-align="center" data-valign="middle" data-visible="true">时间</th>
+                    <th data-field="CODE" data-align="center" data-valign="middle">板块<br />代码</th>
+                    <th data-field="NAME" data-align="center" data-valign="middle">板块<br />名称</th>
+                    <th data-field="QD" data-align="center" data-valign="middle">板块<br />强度</th>
+                    <th data-field="RATE" data-formatter="percentFormatter" data-align="center" data-valign="middle">涨幅</th>
+                    <th data-field="CJE" data-formatter="decimalPlainYiFormatter" data-align="center" data-valign="middle">成交</th>
+                    <th data-field="SPEED" data-align="center" data-valign="middle">涨速</th>
+                    <th data-field="LB" data-align="center" data-valign="middle">强度</th>
+                    <th data-field="LTSZ" data-formatter="decimalPlainYiFormatter" data-align="center" data-valign="middle">流通<br />市值</th>
+                    <th data-field="BUY" data-formatter="decimalYiFormatter" data-align="center" data-valign="middle">买入<br />净额</th>
+                    <th data-field="SELL" data-formatter="decimalYiFormatter" data-align="center" data-valign="middle">卖出<br />净额</th>
+                    <th data-field="ZLJE" data-formatter="decimalYiFormatter" data-align="center" data-valign="middle">主力<br />净额</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#datetimepicker1').datetimepicker({
+            locale: moment.locale('zh-cn'),
+            useCurrent: true,
+            format: 'YYYY年MM月DD日',//显示格式
+            daysOfWeekDisabled: [0, 6], //禁止选中周六周日
+            maxDate: new Date(),
+            ignoreReadonly: true
+        }).on('dp.change', function (e) {
+            //console.log(e.date.format('YYYYMMDD'));
+            //刷新数据表
+            $('#table').bootstrapTable('refresh', {
+                slient: true,
+            });
+        });
+    });
+
+    function ajaxSignalRequest(params) {
+        var picked_date = $('#datetimepicker1').datetimepicker("viewDate")
+
+        var now = new Date()
+        var min = now.getMinutes();
+        var hour = now.getHours();
+
+        if (!picked_date) {
+            picked_date = moment().format("YYYYMMDD");
+        } else {
+            picked_date = picked_date.format("YYYYMMDD");
+        }
+        var now_time = hour + "" + (min >= 10 ? min : "0" + min);
+
+        $.ajax({
+            url: "/api/Plate?count=20&date=" + picked_date + "&time=" + now_time
+                + "&_rnd=" + Math.random(10000000, 99999999),
+            type: "GET",
+            dataType: "json",
+            success: function (rs) {
+                params.success({
+                    total: rs.length,
+                    rows: rs
+                });
+                //debugger;
+            },
+            error: function (rs) {
+                params.error({
+                    total: 0,
+                    rows: []
+                });
+            }
+        });
+    }
+
+</script>

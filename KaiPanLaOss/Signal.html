@@ -1,0 +1,247 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>狙击龙头 ver0.1 build 20201120</title>
+   
+    <style>
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+
+        /* Set padding to keep content from hitting the edges */
+        .body-content {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        /* Set width on the form input elements since they're 100% wide by default */
+        input,
+        select,
+        textarea {
+            max-width: 280px;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+   
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.css">
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="signal.html">狙击龙头</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="signal.html">实时数据</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+<div class="row">
+    <div class="form-inline" id="toolbar">
+        <label>日期：</label>
+        <!--指定 date标记-->
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" readonly/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table text-nowrap"
+               id="table"
+               data-toggle="table"
+               data-sortable="false"
+               data-toolbar="#toolbar"
+               data-search="false"
+               data-show-search-button="false"
+               data-side-pagination="client"
+               data-pagination="true"
+               data-click-to-select="true"
+               data-single-select="true"
+               data-page-size="20"
+               data-buttons-align="right"
+               data-show-button-text="true"
+               data-ajax="ajaxSignalRequest"
+               data-cache="false"
+               data-show-refresh="true"
+               data-auto-refresh="true"
+               data-auto-refresh-status="false"
+               data-auto-refresh-interval="10"
+               data-auto-refresh-silent="true"
+               data-show-fullscreen="true"
+               data-unique-id="RN">
+            <thead>
+                <tr>
+                    <th data-field="RN" data-align="center" data-valign="middle">序<br />号</th>
+                    <th data-field="SBSJ" data-formatter="timeFormatter" data-align="center" data-valign="middle">上榜<br />时间</th>
+                    <th data-field="QD" data-align="center" data-valign="middle">强度</th>
+                    <th data-field="TL" data-align="center" data-valign="middle">体量</th>
+                    <th data-field="CODE" data-align="center" data-valign="middle">股票<br />代码</th>
+                    <th data-field="NAME" data-formatter="autoLightFormatter" data-align="center" data-valign="middle">股票<br />名称</th>
+                    <th data-field="TUDE" data-formatter="wrapFormatter" data-align="left" data-valign="middle">概念板块</th>
+                    <th data-field="SJLTP" data-formatter="decimalYiFormatter" data-align="center" data-valign="middle">实际<br />流通</th>
+                    <th data-field="ZLJE" data-formatter="decimalWanFormatter" data-align="center" data-valign="middle">上榜<br />净额</th>
+                    <th data-field="BUY" data-formatter="decimalWanFormatter" data-align="center" data-valign="middle">上榜<br />买入</th>
+                    <th data-field="SELL" data-formatter="decimalWanFormatter" data-align="center" data-valign="middle">上榜<br />卖出</th>
+                    <th data-field="RATE" data-formatter="percentFormatter" data-align="center" data-valign="middle">上榜<br />涨幅</th>
+                    <th data-field="ZX_ZLJE" data-align="center" data-valign="middle" data-formatter="decimalWanFormatter">主力净额<br />（实时）</th>
+                    <th data-field="ZX_BUY" data-align="center" data-valign="middle" data-formatter="decimalWanFormatter">主力买入<br />（实时）</th>
+                    <th data-field="ZX_SELL" data-align="center" data-valign="middle" data-formatter="decimalWanFormatter">主力卖出<br />（实时）</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+        <hr />
+        <footer>
+            <p>&copy; 2020 - 狙击龙头 ver0.1 build 20201120 </p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/extensions/auto-refresh/bootstrap-table-auto-refresh.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/locale/zh-cn.js"></script>
+
+
+    <script>
+        function ellipsisFormatter(value) {
+            return value.length > 30 ? value.substr(0, 30) + "..." : value;
+        }
+
+        function wrapFormatter(value) {
+
+            ellipsis = value.length > 57 ? value.substr(0, 57) + "..." : value;
+            var num = 20
+            var result = ""
+            for (var i = 0; i < Math.ceil(ellipsis.length / num); i++) {
+                result = result + ellipsis.substr(i * num, num) + "<br />";
+            }
+            return result;
+        }
+
+        function dateFormatter(value) {
+            return value.replace(/(\d{4})(\d{2})(\d{2})/mg, '$1-$2-$3');
+        }
+
+        function timeFormatter(value) {
+            return value.replace(/(\d{2})(\d{2})(\d{2})/mg, '$1:$2');
+        }
+
+        function decimalWanFormatter(value) {
+            var color = value > 0 ? "#ff0000" : (value == 0 ? "#000000" : "#0000ff");
+            return '<div style="color: ' + color + '">' +
+                Math.floor(value / 10000).toString() + "万"
+            '</div>'
+        }
+
+        function decimalYiFormatter(value) {
+            return Math.floor(value / 100000000).toString() + "亿"
+        }
+
+        function percentFormatter(value) {
+            var color = value > 0 ? "#ff0000" : (value == 0 ? "#000000" : "#0000ff");
+            var percent = value * 100;
+            return '<div style="color: ' + color + '">' +
+                value + "%"
+            '</div>'
+        }
+
+        function autoLightFormatter(value, row) {
+            if ((row.QD > 100) ||
+                (row.QD > 60 && row.TL > 1200) ||
+                (row.QD > 60 && row.ZLJE > 2500 * 10000))
+            {
+                return '<div style="color: #f00;">' + value + '</div>';
+            } else {
+                return value;
+            }
+       
+        }
+
+        function ajaxSignalRequest(params) {
+            var picked_date = $('#datetimepicker1').datetimepicker("viewDate")
+            if (!picked_date) {
+                picked_date = new Date().format("YYYYMMDD");
+            } else {
+                picked_date = picked_date.format("YYYYMMDD");
+            }
+            $.ajax({
+                url: "/api/Signal?ttl=0&count=20&date=" + picked_date
+                    +"&_rnd=" + Math.random(10000000, 99999999),
+                type: "GET",
+                dataType: "json",
+                success: function (rs) {
+                    params.success({
+                        total: rs.length,
+                        rows: rs
+                    });
+                    //debugger;
+                },
+                error: function (rs) {
+                    params.error({
+                        total: 0,
+                        rows: []
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $('#datetimepicker1').datetimepicker({
+                locale: moment.locale('zh-cn'),
+                useCurrent: true,
+                format: 'YYYY年MM月DD日',//显示格式
+                daysOfWeekDisabled: [0, 6], //禁止选中周六周日
+                maxDate: new Date(),
+                ignoreReadonly:true
+            }).on('dp.change', function (e) {
+                //console.log(e.date.format('YYYYMMDD'));
+                //刷新数据表
+                $('#table').bootstrapTable('refresh', {
+                                slient:true,
+                            });
+            });
+        });
+
+        
+
+    </script>
+
+</body>
+</html>
